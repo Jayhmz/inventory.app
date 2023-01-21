@@ -19,7 +19,7 @@ public class Asset {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String asset_Id;
-    private String asset_Description;
+    private String asset_Name;
     private String asset_Category;
     private String asset_User;
     private String new_AssetId;
