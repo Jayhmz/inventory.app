@@ -1,4 +1,4 @@
-package com.plantacion.inventory.app.entity;
+package com.plantacion.inventory.app.model.domain;
 
 
 import jakarta.persistence.*;
@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -23,5 +25,5 @@ public class Asset {
     private String new_AssetId;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private AssetComponent component;
+    private List<AssetComponent> component;
 }

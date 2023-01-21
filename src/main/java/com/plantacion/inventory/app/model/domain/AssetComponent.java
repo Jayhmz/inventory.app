@@ -1,4 +1,4 @@
-package com.plantacion.inventory.app.entity;
+package com.plantacion.inventory.app.model.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -14,5 +14,8 @@ public class AssetComponent {
     private String component_Name;
     private String component_Category;
     private String new_ComponentId;
+
+    @JoinColumn(name = "asset_id")
+    private Asset asset;
 
 }
