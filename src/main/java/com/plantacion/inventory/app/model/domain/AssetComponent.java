@@ -23,7 +23,7 @@ public class AssetComponent {
 
     @Column(name = "component_name", nullable = false)
     private String component_Name;
-    
+
     @Column(name = "component_category", nullable = false)
     private String component_Category;
 
