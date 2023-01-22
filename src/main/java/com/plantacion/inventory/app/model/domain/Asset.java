@@ -49,4 +49,7 @@ public class Asset {
     @Column(name = "availability_details", nullable = false)
     private String availability_Details;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<AssetComponent> components;
+
 }
