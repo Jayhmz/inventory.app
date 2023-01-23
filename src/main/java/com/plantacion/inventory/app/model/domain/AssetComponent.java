@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.util.Date;
 
 @Entity
 @Table(name = "components")
@@ -47,4 +50,13 @@ public class AssetComponent {
     @JoinColumn(name = "asset_id")
     private Asset asset;
 
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_on", nullable = false, updatable = false)
+    private Date created_on;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_on", nullable = false, updatable = false)
+    private Date updated_on;
 }
