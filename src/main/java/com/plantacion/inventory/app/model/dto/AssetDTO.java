@@ -48,7 +48,7 @@ public class AssetDTO {
     @JsonProperty("movement_details")
     private String movement_Details;
 
-    @JsonProperty("availability_details")
+    @JsonProperty("availability_status")
     @NotNull(message = "What is the availability state of the asset?")
     private String availability_Details;
 
