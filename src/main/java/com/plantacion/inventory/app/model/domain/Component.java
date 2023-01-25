@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 
@@ -15,23 +16,17 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AssetComponent {
-
+public class Component {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "component_id", nullable = false)
+    @Column(name = "component_id", nullable = true)
     private String component_Id;
 
     @Column(name = "component_name", nullable = false)
     private String component_Name;
-
-    @Column(name = "component_category", nullable = false)
-    private String component_Category;
-
-    @Column(name = "component_location", nullable = false)
-    private String component_Location;
 
     @Column(name = "component_serial_no", nullable = true, unique = true)
     private String component_Serial_No;
@@ -46,8 +41,8 @@ public class AssetComponent {
     @Column(name = "availability_details", nullable = false)
     private String availability_Details;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "asset_id")
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "new_asset_id", referencedColumnName = "new_asset_id")
     private Asset asset;
 
     @CreationTimestamp
@@ -55,8 +50,9 @@ public class AssetComponent {
     @Column(name = "created_on", nullable = false, updatable = false)
     private Date created_on;
 
-    @CreationTimestamp
+    @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_on", nullable = false, updatable = false)
     private Date updated_on;
+
 }

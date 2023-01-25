@@ -19,12 +19,11 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class Asset {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "asset_id", nullable = true, unique = true)
+    @Column(name = "asset_id", nullable = true)
     private String asset_Id;
 
     @Column(name = "asset_name", nullable = false)
@@ -51,9 +50,6 @@ public class Asset {
     private String movement_Details;
     @Column(name = "availability_details", nullable = false)
     private String availability_Details;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<AssetComponent> component;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

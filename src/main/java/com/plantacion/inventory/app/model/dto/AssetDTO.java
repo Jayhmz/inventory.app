@@ -1,18 +1,22 @@
 package com.plantacion.inventory.app.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.plantacion.inventory.app.model.domain.AssetComponent;
+import com.plantacion.inventory.app.model.domain.Component;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class AssetDTO {
 
     @JsonProperty("asset_id")
-    @Size(min = 12, max = 12, message = "Confirm the asset id")
+    @Size(min = 0, max = 12, message = "Confirm the asset id")
     private String asset_Id;
 
     @JsonProperty("asset_name")
@@ -52,5 +56,6 @@ public class AssetDTO {
     @NotNull(message = "What is the availability state of the asset?")
     private String availability_Details;
 
-    private List<AssetComponent> components;
+    @JsonProperty("component")
+    private AssetComponentDTO component;
 }
