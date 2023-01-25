@@ -4,6 +4,8 @@ import com.plantacion.inventory.app.model.domain.Asset;
 import com.plantacion.inventory.app.repository.AssetRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -15,5 +17,13 @@ public class AssetRepositoryImpl implements AssetRepository {
     public Asset save(Asset asset) {
         entityManager.persist(asset);
         return asset;
+    }
+
+    @Override
+    public Asset findById(String new_asset_id) {
+        String query = "select a from Asset a where a.new_AssetId = :new_asset_id";
+        TypedQuery<Asset> q = entityManager.createQuery(query, Asset.class);
+        q.setParameter("new_asset_id", new_asset_id);
+        return q.getSingleResult();
     }
 }
