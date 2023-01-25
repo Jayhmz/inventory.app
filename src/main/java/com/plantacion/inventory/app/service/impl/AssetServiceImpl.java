@@ -31,4 +31,10 @@ public class AssetServiceImpl implements AssetService {
         assetRepository.save(a);
         return a;
     }
+
+    @Override
+    @Transactional
+    public List<Asset> getAllAssets() {
+        return assetRepository.getAllAssets();
+    }
 }
