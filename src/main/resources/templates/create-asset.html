@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="/css/style.css" media="all" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" media="all" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body class="sm-col-12">
+
+    <div class="container col-12 my-3 align-items-center shadow-lg bg-gray p-2 rounded" style="background-color:lightgray;">
+        <div class="col-auto d-flex justify-content-center">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    style="margin: 2em;">
+                Add Component
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal"
+                 tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"
+                                id="exampleModalLabel">
+                                Add component
+                            </h5>
+                            <button type="button" class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close">
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <form id="form" th:action="@{/add-component}" method="post" th:object="${component}" class="my-3 px-5">
+
+                                <div class="mb-3">
+                                    <label for="c_aId" class="form-label">Asset Id</label>
+                                    <input type="text" class="form-control" id="c_aId" placeholder="FCMB0205678"
+                                           th:field="*{asset_Id}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cId" class="form-label">Component Id</label>
+                                    <input type="text" class="form-control" id="cId" placeholder="FCMB0205678"
+                                           th:field="*{component_Id}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cName" class="form-label">Component Name</label>
+                                    <input type="text" class="form-control" id="cName" placeholder="FCMB0205678"
+                                           th:field="*{component_Name}">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="cSerialNo" class="form-label">Component serial-number</label>
+                                    <input type="text" class="form-control" id="cSerialNo" placeholder="SN77892...."
+                                           th:field="*{component_Serial_No}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="C_new_id" class="form-label">New component-id</label>
+                                    <input type="text" class="form-control" id="C_new_id" placeholder="FCMB00092314"
+                                           th:field="*{new_componentId}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="c_movement" class="form-label">Component movement detail</label>
+                                    <input type="text" class="form-control" id="c_movement"
+                                           placeholder="Moved to Somolu branch" th:field="*{movement_Details}">
+                                </div>
+                                <div class="mb-3 d-flex gap-3">
+                                    <label class="form-label">Component status</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                               value="Functioning" id="flexRadioModal1" th:field="*{status}" checked>
+                                        <label class="form-check-label" for="flexRadioModal1">
+                                            Functioning
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                               value="Not functioning" th:field="*{status}" id="flexRadioModal2">
+                                        <label class="form-check-label" for="flexRadioModal2">
+                                            Not functioning
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Component State</label>
+                                    <select class="form-select" aria-label="Default select "
+                                            th:field="*{availability_Details}">
+                                        <option value="" selected>Select an option</option>
+                                        <option value="Available in Register and in Branch">Available in Register and in
+                                            Branch
+                                        </option>
+                                        <option value="Available in Register and not in Branch">Available in Register and
+                                            not in Branch
+                                        </option>
+                                        <option value="Available in Branch and not in Register">Available in Branch and not
+                                            in Register
+                                        </option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Cancel
+                            </button>
+                            <button type="button" onclick="SubmitForm()" class="btn btn-primary">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form th:action="@{/create-asset}" method="post" th:object="${asset}" class="my-3 px-5">
+            <div class="mb-3">
+                <label for="aId" class="form-label">Asset Id</label>
+                <input type="text" class="form-control" id="aId" placeholder="FCMB0205678" th:field="*{asset_Id}">
+            </div>
+            <div class="mb-3">
+                <label for="aName" class="form-label">Asset name</label>
+                <input type="text" class="form-control" id="aName" placeholder="Sweever chair" th:field="*{asset_Name}">
+            </div>
+            <div class="mb-3">
+                <label for="aCategory" class="form-label">Asset category</label>
+                <input type="text" class="form-control" id="aCategory" placeholder="Furniture" th:field="*{asset_Category}">
+            </div>
+            <div class="mb-3">
+                <label for="aLocation" class="form-label">Asset location</label>
+                <input type="text" class="form-control" id="aLocation" placeholder="Onipanu" th:field="*{asset_Location}">
+            </div>
+            <div class="mb-3">
+                <label for="aSerialNo" class="form-label">Asset serial-number</label>
+                <input type="text" class="form-control" id="aSerialNo" placeholder="SN77892...."
+                       th:field="*{asset_Serial_No}">
+            </div>
+            <div class="mb-3">
+                <label for="aUser" class="form-label">Asset user</label>
+                <input type="text" class="form-control" id="aUser" placeholder="Internal Control Head Office"
+                       th:field="*{asset_User}">
+            </div>
+            <div class="mb-3">
+                <label for="a_new_id" class="form-label">New asset-id</label>
+                <input type="text" class="form-control" id="a_new_id" placeholder="FCMB00092314" th:field="*{new_AssetId}">
+            </div>
+            <div class="mb-3">
+                <label for="movement" class="form-label">Asset movement detail</label>
+                <input type="text" class="form-control" id="movement" placeholder="Moved to Somolu branch"
+                       th:field="*{movement_Details}">
+            </div>
+            <div class="mb-3 d-flex gap-3">
+                <label class="form-label">Asset status</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" value="Functioning"
+                           id="flexRadioDefault1" th:field="*{status}" checked>
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Functioning
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" value="Not functioning"
+                           th:field="*{status}" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Not functioning
+                    </label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Asset State</label>
+                <select class="form-select" aria-label="Default select " th:field="*{availability_Details}">
+                    <option value="" selected>Select an option</option>
+                    <option value="Available in Register and in Branch">Available in Register and in Branch</option>
+                    <option value="Available in Register and not in Branch">Available in Register and not in Branch</option>
+                    <option value="Available in Branch and not in Register">Available in Branch and not in Register</option>
+                </select>
+            </div>
+
+
+            <div class="col-auto d-flex justify-content-center ">
+                <button type="submit" class="btn btn-primary align-self-center w-50 my-2 mb-3">Submit</button>
+            </div>
+        </form>
+    </div>
+
+<script th:src="@{/js/index.js}"></script>
+<script>
+   function SubmitForm(){
+   console.log("hello there");
+        let form = document.getElementById('form');
+        form.submit();
+    }
+</script>
+</body>
+</html>

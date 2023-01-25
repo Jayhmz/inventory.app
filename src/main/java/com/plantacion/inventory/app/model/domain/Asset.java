@@ -6,7 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,12 +19,11 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class Asset {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "asset_id", nullable = true, unique = true)
+    @Column(name = "asset_id", nullable = true)
     private String asset_Id;
 
     @Column(name = "asset_name", nullable = false)
@@ -49,7 +51,13 @@ public class Asset {
     @Column(name = "availability_details", nullable = false)
     private String availability_Details;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<AssetComponent> components;
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_on", nullable = false, updatable = false)
+    private Date created_on;
 
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_on", nullable = false, updatable = false)
+    private Date updated_on;
 }

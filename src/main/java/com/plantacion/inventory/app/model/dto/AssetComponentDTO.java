@@ -3,33 +3,29 @@ package com.plantacion.inventory.app.model.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class AssetComponentDTO {
+    @JsonProperty("asset_id")
+    @Size(min = 0, max = 12, message = "Confirm the component id")
+    @NotNull(message = "You must provide the main asset id e.g desktop new qrcode id")
+    private String asset_Id;
+
     @JsonProperty("component_id")
-    @Size(min = 12, max = 12, message = "Confirm the component id")
+    @Size(min = 0, max = 12, message = "Confirm the component id")
     private String component_Id;
 
     @JsonProperty("component_name")
     @NotNull(message = "component name cannot be empty")
     @Size(min = 3, message = "Invalid component name")
     private String component_Name;
-
-    @JsonProperty("component_category")
-    @Size(min = 1, message = "Invalid category name")
-    private String component_Category;
-
-    @JsonProperty("component_location")
-    @NotNull(message = "Specify the location of the component")
-    private String component_Location;
-
-    @JsonProperty("component_user")
-    @Size(min = 5, message = "Invalid component user/office")
-    @NotNull(message = "component user/office cannot be empty")
-    private String component_User;
 
     @JsonProperty("serial_no")
     private String component_Serial_No;
