@@ -8,6 +8,8 @@ import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class AssetRepositoryImpl implements AssetRepository {
     @PersistenceContext
@@ -25,5 +27,12 @@ public class AssetRepositoryImpl implements AssetRepository {
         TypedQuery<Asset> q = entityManager.createQuery(query, Asset.class);
         q.setParameter("new_asset_id", new_asset_id);
         return q.getSingleResult();
+    }
+
+    @Override
+    public List<Asset> getAllAssets() {
+        String query = "select a from Asset a";
+        TypedQuery<Asset> assets = entityManager.createQuery(query, Asset.class);
+        return assets.getResultList();
     }
 }
