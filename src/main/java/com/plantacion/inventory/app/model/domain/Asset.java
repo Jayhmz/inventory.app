@@ -44,6 +44,9 @@ public class Asset {
     @Column(name = "new_asset_id", nullable = false, unique = true)
     private String new_AssetId;
 
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY, mappedBy = "asset")
+    private Component component;
+
     @Column(name = "status", nullable = false)
     private String status;
     @Column(name = "movement_details", nullable = true)

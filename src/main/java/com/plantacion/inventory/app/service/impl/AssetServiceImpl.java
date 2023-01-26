@@ -37,4 +37,6 @@ public class AssetServiceImpl implements AssetService {
     public List<Asset> getAllAssets() {
         return assetRepository.getAllAssets();
     }
+
+
 }

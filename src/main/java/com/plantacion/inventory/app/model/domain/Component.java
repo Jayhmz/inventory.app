@@ -41,8 +41,8 @@ public class Component {
     @Column(name = "availability_details", nullable = false)
     private String availability_Details;
 
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "new_asset_id", referencedColumnName = "new_asset_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "asset_id")
     private Asset asset;
 
     @CreationTimestamp

@@ -26,18 +26,23 @@ public class ComponentServiceImpl implements ComponentService {
     public Component save(AssetComponentDTO component) {
         Asset parentAsset = assetRepository.findById(component.getAsset_Id());
 
-        Component c = Component.builder()
-                .asset(parentAsset)
-                .component_Name(component.getComponent_Name())
-                .component_Id(component.getComponent_Id())
-                .new_ComponentId(component.getNew_componentId())
-                .component_Serial_No(component.getComponent_Serial_No())
-                .availability_Details(component.getAvailability_Details())
-                .status(component.getStatus())
-                .movement_Details(component.getMovement_Details())
-                .build();
+        if(parentAsset != null){
+            Component c = Component.builder()
+                    .asset(parentAsset)
+                    .component_Name(component.getComponent_Name())
+                    .component_Id(component.getComponent_Id())
+                    .new_ComponentId(component.getNew_componentId())
+                    .component_Serial_No(component.getComponent_Serial_No())
+                    .availability_Details(component.getAvailability_Details())
+                    .status(component.getStatus())
+                    .movement_Details(component.getMovement_Details())
+                    .build();
 
-        componentRepository.save(c);
-        return c;
+            componentRepository.save(c);
+            return c;
+        }else{
+            throw new IllegalArgumentException("Asset id not found");
+        }
+
     }
 }

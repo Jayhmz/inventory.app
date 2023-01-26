@@ -1,5 +1,6 @@
 body{
     background-color: whitesmoke;
     margin-top: 10vh;
-    margin-bottom: 200px;
+    margin-bottom: 200px !important;
+    padding:20px;
 }
