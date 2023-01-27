@@ -25,20 +25,20 @@ public class Component {
     @Column(name = "component_id", nullable = true)
     private String component_Id;
 
-    @Column(name = "component_name", nullable = false)
+    @Column(name = "component_name", nullable = true)
     private String component_Name;
 
-    @Column(name = "component_serial_no", nullable = true, unique = true)
+    @Column(name = "component_serial_no", nullable = true)
     private String component_Serial_No;
 
-    @Column(name = "new_component_id", nullable = false, unique = true)
+    @Column(name = "new_component_id", nullable = true)
     private String new_ComponentId;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "status", nullable = true)
     private String status;
     @Column(name = "movement_details", nullable = true)
     private String movement_Details;
-    @Column(name = "availability_details", nullable = false)
+    @Column(name = "availability_details", nullable = true)
     private String availability_Details;
 
     @OneToOne(cascade = CascadeType.ALL)

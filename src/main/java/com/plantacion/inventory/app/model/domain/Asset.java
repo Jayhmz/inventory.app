@@ -44,14 +44,14 @@ public class Asset {
     @Column(name = "new_asset_id", nullable = false, unique = true)
     private String new_AssetId;
 
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY, mappedBy = "asset")
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER, mappedBy = "asset")
     private Component component;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "status", nullable = true)
     private String status;
     @Column(name = "movement_details", nullable = true)
     private String movement_Details;
-    @Column(name = "availability_details", nullable = false)
+    @Column(name = "availability_details", nullable = true)
     private String availability_Details;
 
     @CreationTimestamp

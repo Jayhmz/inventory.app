@@ -28,6 +28,17 @@ public class AssetServiceImpl implements AssetService {
     public Asset save(AssetDTO asset) {
         Asset a = new Asset();
         BeanUtils.copyProperties(asset, a);
+        Component c = new Component();
+        c.setAsset(a);
+        c.setNew_ComponentId(asset.getComponent().getNew_componentId());
+        c.setComponent_Id(asset.getComponent().getComponent_Id());
+        c.setComponent_Name(asset.getComponent().getComponent_Name());
+        c.setComponent_Serial_No(asset.getComponent().getComponent_Serial_No());
+        c.setStatus(asset.getComponent().getStatus());
+        c.setMovement_Details(asset.getComponent().getMovement_Details());
+        c.setAvailability_Details(asset.getComponent().getAvailability_Details());
+
+        a.setComponent(c);
         assetRepository.save(a);
         return a;
     }
