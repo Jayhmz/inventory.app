@@ -33,7 +33,7 @@ public class AssetDTO {
     private String asset_Location;
 
     @JsonProperty("asset_user")
-    @Size(min = 5, message = "Invalid asset user/office")
+    @Size(min = 1, message = "Invalid asset user/office")
     @NotNull(message = "Asset user/office cannot be empty")
     private String asset_User;
 
