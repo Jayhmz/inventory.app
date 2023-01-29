@@ -30,6 +30,25 @@ public class AssetRepositoryImpl implements AssetRepository {
     }
 
     @Override
+    public Asset findBySerialNo(String serial_no) {
+//        String query =  "select a.asset_Serial_No from Asset a where a.asset_Serial_No = :serial_nom";
+        TypedQuery<Asset> q = entityManager.createQuery("SELECT e FROM Asset e WHERE e.asset_Serial_No = :serial_nom", Asset.class);
+        q.setParameter("serial_nom", serial_no);
+
+        try {
+            Asset singleResult = q.getSingleResult();
+            System.out.println("inside try and catch phase 1 ");
+
+            System.out.println("actually returned a result that is valid and not empty string" + singleResult.getAsset_Serial_No());
+            return singleResult;
+
+        }catch (Exception e){
+            System.out.println("this will work repo" +e);
+            return null;
+        }
+    }
+
+    @Override
     public List<Asset> getAllAssets() {
         String query = "select a from Asset a";
         TypedQuery<Asset> assets = entityManager.createQuery(query, Asset.class);

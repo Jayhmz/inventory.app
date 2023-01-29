@@ -28,6 +28,23 @@ public class AssetServiceImpl implements AssetService {
     public Asset save(AssetDTO asset) {
         Asset a = new Asset();
         BeanUtils.copyProperties(asset, a);
+
+        if (asset.getAsset_Serial_No() != null &&
+                !asset.getAsset_Serial_No().equals("")) {
+            Asset bySerialNo = assetRepository.findBySerialNo(asset.getAsset_Serial_No());
+            //check if that value exist in db, if it does, bounce it back
+            if (bySerialNo == null){
+                System.out.println("------ inside the bySerialNo block where there is an existing serial no. -------");
+                asset.setAsset_Serial_No(asset.getAsset_Serial_No());
+            }
+            else{
+                throw new IllegalArgumentException("Asset serial number already exist");
+            }
+        }else if(asset.getAsset_Serial_No().equals("")){
+            System.out.println("------ inside the bySerialNo block where there is nno serial no. in field attribute. -------");
+            asset.setAsset_Serial_No(asset.getAsset_Serial_No());
+        }
+
         Component c = new Component();
         c.setAsset(a);
         c.setNew_ComponentId(asset.getComponent().getNew_componentId());

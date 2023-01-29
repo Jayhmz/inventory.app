@@ -8,5 +8,7 @@ public interface AssetRepository {
     public Asset save(Asset asset);
     public Asset findById(String asset_id);
 
+    public Asset findBySerialNo(String serial_no);
+
     public List<Asset> getAllAssets();
 }

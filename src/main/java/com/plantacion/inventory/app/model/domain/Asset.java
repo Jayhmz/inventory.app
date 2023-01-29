@@ -38,7 +38,7 @@ public class Asset {
     @Column(name = "asset_user", nullable = false)
     private String asset_User;
 
-    @Column(name = "asset_serial_no", nullable = true, unique = true)
+    @Column(name = "asset_serial_number", nullable = true)
     private String asset_Serial_No;
 
     @Column(name = "new_asset_id", nullable = false, unique = true)
@@ -49,18 +49,18 @@ public class Asset {
 
     @Column(name = "status", nullable = true)
     private String status;
-    @Column(name = "movement_details", nullable = true)
+    @Column(name = "asset_movement_details", nullable = true)
     private String movement_Details;
-    @Column(name = "availability_details", nullable = true)
+    @Column(name = "asset_availability_details", nullable = true)
     private String availability_Details;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_on", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Date created_on;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_on", nullable = false, updatable = false)
+    @Column(name = "updated_at", nullable = false, updatable = false)
     private Date updated_on;
 }
