@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "new_assets")
+@Table(name = "friday_assets")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -12,7 +12,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.util.Date;
 
 @Entity
-@Table(name = "new_components")
+@Table(name = "friday_components")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
